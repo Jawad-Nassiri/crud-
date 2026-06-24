@@ -16,16 +16,19 @@ public class Main {
 
         EntityManager em = createEM();
 
-        List<Person> personsList = em.createQuery("SELECT p FROM Person p", Person.class).getResultList();
-        List<Passport> passportsList = em.createQuery("SELECT p FROM Passport p", Passport.class).getResultList();
+        em.getTransaction().begin();
 
-        for(Person p: personsList) {
-            System.out.println(p);
-        }
+        Person p = em.find(Person.class, 25);
+        Passport passport = em.find(Passport.class, 25);
 
-        for(Passport pass: passportsList) {
-            System.out.println(pass);
-        }
+        p.setName("Leo");
+        passport.setNumber("LN225588");
+        
+
+        em.getTransaction().commit();
+
+
+
     }
 
 
