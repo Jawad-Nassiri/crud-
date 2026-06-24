@@ -18,12 +18,11 @@ public class Main {
 
         em.getTransaction().begin();
 
-        Person p = em.find(Person.class, 25);
-        Passport passport = em.find(Passport.class, 25);
+        Person p = em.find(Person.class, 25L);
+        Passport passport = em.find(Passport.class, 25L);
 
-        p.setName("Leo");
-        passport.setNumber("LN225588");
-        
+        em.remove(passport);
+        em.remove(p);
 
         em.getTransaction().commit();
 
