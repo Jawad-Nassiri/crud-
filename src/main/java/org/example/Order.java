@@ -8,12 +8,17 @@ import lombok.Setter;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "order")
+@Table(name = "`order`")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
     private Long id;
+
+    @Column
+    @Getter
+    @Setter
+    private String name;
 
     @Column
     @Getter
