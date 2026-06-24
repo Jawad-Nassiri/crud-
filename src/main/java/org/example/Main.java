@@ -16,19 +16,16 @@ public class Main {
 
         EntityManager em = createEM();
 
-        Person p = em.find(Person.class, 2);
-        Passport passport = em.find(Passport.class, 2);
+        List<Person> personsList = em.createQuery("SELECT p FROM Person p", Person.class).getResultList();
+        List<Passport> passportsList = em.createQuery("SELECT p FROM Passport p", Passport.class).getResultList();
 
-
-        if(p != null && passport != null) {
+        for(Person p: personsList) {
             System.out.println(p);
-            System.out.println(passport);
-        } else {
-            System.out.println("Data do not exist !");
         }
 
-
-
+        for(Passport pass: passportsList) {
+            System.out.println(pass);
+        }
     }
 
 
