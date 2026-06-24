@@ -3,28 +3,30 @@ package org.example;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
+
+import java.util.List;
 
 @Entity
-@Table(name = "person")
-@ToString(exclude = "passport")
-public class Person {
+@Table(name = "user")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter
-    private int id;
+    private Long id;
+
+    @Column
+    @Setter
+    @Getter
+    private String name;
 
     @Column
     @Getter
     @Setter
-    private String name;
-
-    @OneToOne(mappedBy = "person")
-    @Getter
-    @Setter
-    private Passport passport;
+    private int age;
 
 
-    public Person() {}
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
+    public User() {}
 }
