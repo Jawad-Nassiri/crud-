@@ -3,9 +3,11 @@ package org.example;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "passport")
+@ToString(exclude = "person")
 public class Passport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
