@@ -4,7 +4,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-import java.util.List;
 
 
 public class Main {
@@ -20,11 +19,10 @@ public class Main {
         System.out.println(user17);
         if(user17 != null) {
             user17.setUsername("Grace");
-            System.out.println(user17);
+            em.remove(user17);
         }
 
         em.getTransaction().commit();
-
         em.close();
         emf.close();
 
