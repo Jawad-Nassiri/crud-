@@ -15,15 +15,15 @@ public class Main {
     public static void main(String[] args) {
         EntityManager em = createEM();
 
-//      get one user
-        User user16 = em.find(User.class, 16L);
-        System.out.println(user16);
-
-//      get all users
-        List<User> users = em.createQuery("SELECT u FROM User u", User.class).getResultList();
-        for(User u: users) {
-            System.out.println(u);
+        em.getTransaction().begin();
+        User user17 = em.find(User.class, 17L);
+        System.out.println(user17);
+        if(user17 != null) {
+            user17.setUsername("Grace");
+            System.out.println(user17);
         }
+
+        em.getTransaction().commit();
 
         em.close();
         emf.close();
