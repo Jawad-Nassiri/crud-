@@ -4,6 +4,7 @@ package org.example;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "product")
+@ToString(exclude = "orderList")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

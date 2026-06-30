@@ -3,6 +3,7 @@ package org.example;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "orders")
+@ToString(exclude = "productList")
 public class Order {
 
     @Id

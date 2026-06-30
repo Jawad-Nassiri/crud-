@@ -1,10 +1,13 @@
 package org.example;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
+import javax.swing.plaf.metal.MetalBorders;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 public class Main {
@@ -15,31 +18,17 @@ public class Main {
     public static void main(String[] args) {
         EntityManager em = createEM();
 
-        em.getTransaction().begin();
+        List<Product> products = em.createQuery("SELECT p FROM Product p", Product.class)
+                .getResultList();
+        List<Order> orders = em.createQuery("SELECT o FROM Order o", Order.class).getResultList();
 
-        Product p1 = new Product();
-        p1.setName("Laptop");
-        p1.setPrice(BigDecimal.valueOf(1100));
+        for(Product p: products) {
+            System.out.println(p);
+        }
 
-
-        Product p2 = new Product();
-        p2.setName("Mouse");
-        p2.setPrice(BigDecimal.valueOf(49.99));
-
-        Order order1 = new Order();
-        order1.setDate(new Date());
-
-        order1.getProductList().add(p1);
-        order1.getProductList().add(p2);
-
-
-        em.persist(p1);
-        em.persist(p2);
-
-        em.persist(order1);
-
-
-        em.getTransaction().commit();
+        for(Order o: orders) {
+            System.out.println(o);
+        }
 
     }
 
