@@ -18,18 +18,13 @@ public class Main {
     public static void main(String[] args) {
         EntityManager em = createEM();
 
-        List<Product> products = em.createQuery("SELECT p FROM Product p", Product.class)
-                .getResultList();
-        List<Order> orders = em.createQuery("SELECT o FROM Order o", Order.class).getResultList();
+        em.getTransaction().begin();
 
-        for(Product p: products) {
-            System.out.println(p);
-        }
+        Product p1 = em.find(Product.class, 1L);
+        p1.setName("pc");
+        em.merge(p1);
 
-        for(Order o: orders) {
-            System.out.println(o);
-        }
-
+        em.getTransaction().commit();
     }
 
 
