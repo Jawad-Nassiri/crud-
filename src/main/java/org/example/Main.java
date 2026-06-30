@@ -15,12 +15,9 @@ public class Main {
         EntityManager em = createEM();
 
         em.getTransaction().begin();
-        User user17 = em.find(User.class, 17L);
-        System.out.println(user17);
-        if(user17 != null) {
-            user17.setUsername("Grace");
-            em.remove(user17);
-        }
+
+        em.createQuery("DELETE FROM User").executeUpdate();
+
 
         em.getTransaction().commit();
         em.close();
