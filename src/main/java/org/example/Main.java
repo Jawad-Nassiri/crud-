@@ -16,7 +16,14 @@ public class Main {
 
         em.getTransaction().begin();
 
-        em.createQuery("DELETE FROM User").executeUpdate();
+        User user = new User("Jawad", "Jawad1212@yahoo.com");
+        Profile profile = new Profile("Software Developer", "0780476694");
+
+        user.setProfile(profile);
+        profile.setUser(user);
+
+        em.persist(profile);
+
 
 
         em.getTransaction().commit();

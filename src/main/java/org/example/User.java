@@ -29,6 +29,12 @@ public class User {
     @Setter
     private LocalDateTime createdAt;
 
+
+    @Getter
+    @Setter
+    @OneToOne(mappedBy = "user")
+    private Profile profile;
+
     public User() {}
 
     public User(String username, String email) {
