@@ -4,9 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-import javax.swing.plaf.metal.MetalBorders;
-import java.math.BigDecimal;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,12 +17,29 @@ public class Main {
         EntityManager em = createEM();
 
         em.getTransaction().begin();
+        List<User> users = new ArrayList<>();
 
-        Product p1 = em.find(Product.class, 1L);
-        p1.setName("pc");
-        em.merge(p1);
+        users.add(new User("Leo", "leo@yahoo.fr"));
+        users.add(new User("Emma", "emma@gmail.com"));
+        users.add(new User("Noah", "noah@gmail.com"));
+        users.add(new User("Liam", "liam@yahoo.fr"));
+        users.add(new User("Mia", "mia@gmail.com"));
+        users.add(new User("Lucas", "lucas@gmail.com"));
+        users.add(new User("Sofia", "sofia@yahoo.fr"));
+        users.add(new User("Ethan", "ethan@gmail.com"));
+        users.add(new User("Chloe", "chloe@yahoo.fr"));
+        users.add(new User("Adam", "adam@gmail.com"));
+
+        for(User u: users) {
+            em.persist(u);
+        }
+
+
 
         em.getTransaction().commit();
+        em.close();
+        emf.close();
+
     }
 
 
